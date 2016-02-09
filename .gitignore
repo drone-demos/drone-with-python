@@ -4,3 +4,4 @@
 *.swp
 *.tmp
 *.egg-info
+secrets.yml
