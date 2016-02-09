@@ -13,4 +13,5 @@ COPY . /opt/app/src/
 WORKDIR /opt/app/src
 RUN python setup.py install
 
+EXPOSE 5000
 CMD dronedemo
