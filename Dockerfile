@@ -1,6 +1,7 @@
 FROM python:3.5.1-alpine
 MAINTAINER Greg Taylor <gtaylor@gc-taylor.com>
 
+RUN pip install --upgrade pip setuptools wheel
 COPY wheeldir /opt/app/wheeldir
 # These are copied and installed first in order to take maximum advantage
 # of Docker layer caching (if enabled).
