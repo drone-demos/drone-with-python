@@ -15,12 +15,12 @@ build:
     - mkdir -p coverage
     - nosetests -v tests/
 
-publish:
-  docker:
-    username: $$DOCKER_USERNAME
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: dronedemos/drone-with-python
-    tag: $$TAG
-    when:
-      event: tag
+#publish:
+#  docker:
+#    username: $$DOCKER_USERNAME
+#    password: $$DOCKER_PASS
+#    email: $$DOCKER_EMAIL
+#    repo: dronedemos/drone-with-python
+#    tag: $$TAG
+#    when:
+#      event: tag
