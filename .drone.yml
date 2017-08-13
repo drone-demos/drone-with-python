@@ -1,9 +1,6 @@
-cache:
-  mount:
-    - wheeldir
 pipeline:
   build:
-    image: python:3.5.1-alpine
+    image: ${IMAGE}
     commands:
       - pip install --upgrade pip setuptools wheel
       - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
@@ -15,12 +12,6 @@ pipeline:
       - mkdir -p coverage
       - nosetests -v tests/
 
-#publish:
-#  docker:
-#    username: $$DOCKER_USERNAME
-#    password: $$DOCKER_PASS
-#    email: $$DOCKER_EMAIL
-#    repo: dronedemos/drone-with-python
-#    tag: $$TAG
-#    when:
-#      event: tag
+matrix:
+  IMAGE:
+    - python:3.5.1-alpine
