@@ -14,6 +14,9 @@ pipeline:
 
   auth:
     image: scottlackey/drone-auth-ecr
+    auth_config:
+      username: ${ECR_SECRET_KEY}
+      password: ${ECR_ACCESS_KEY}
     commands:
       - aws ecr get-login --region us-east-1 | bash
       - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
