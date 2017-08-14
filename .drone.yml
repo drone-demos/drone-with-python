@@ -11,6 +11,19 @@ pipeline:
       - flake8 dronedemo
       - mkdir -p coverage
       - nosetests -v tests/
+  publish:
+    image: plugins/ecr
+    secret_key: ${ECR_SECRET_KEY}
+    access_key: ${ECR_ACCESS_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    repo: 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc
+#    tags:
+#      - "${DRONE_BRANCH}_${DRONE_COMMIT}"
+    dockerfile: ./Dockerfile
+    context: .
+    when:
+      branch: ["master"]
 
 matrix:
   IMAGE:
