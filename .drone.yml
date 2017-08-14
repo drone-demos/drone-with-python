@@ -19,11 +19,8 @@ pipeline:
     repo: 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc
 #    dockerfile: ./Dockerfile
 #    context: .
-    environment:
-      - AWS_ACCESS_KEY_ID=${ECR_SECRET_KEY}
-      - AWS_SECRET_ACCESS_KEY=${ECR_ACCESS_KEY}
     commands:
-      - echo $$ECR_SECRET_KEY
+      - ls -la ~/
       - echo $AWS_ACCESS_KEY_ID
       - aws ecr get-login --region us-east-1 | sh
       - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
