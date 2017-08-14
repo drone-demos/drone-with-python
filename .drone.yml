@@ -21,7 +21,7 @@ pipeline:
     context: .
     commands:
       - echo $AWS_ACCESS_KEY_ID
-      - echo $ECR_SECRET_KEY
+      - echo $${ECR_SECRET_KEY}
     environment:
       - AWS_ACCESS_KEY_ID=${ECR_SECRET_KEY}
       - AWS_SECRET_ACCESS_KEY=${ECR_ACCESS_KEY}
