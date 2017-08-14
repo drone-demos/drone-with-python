@@ -12,14 +12,6 @@ pipeline:
       - mkdir -p coverage
       - nosetests -v tests/
 
-  auth:
-    image: scottlackey/drone-auth-ecr
-    commands:
-      - aws ecr get-login --region us-east-1 | bash
-      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
   publish:
     image: plugins/ecr
     secret_key: ${ECR_SECRET_KEY}
