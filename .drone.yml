@@ -16,14 +16,10 @@ pipeline:
     image: plugins/ecr
     secret_key: ${ECR_SECRET_KEY}
     access_key: ${ECR_ACCESS_KEY}
+    auth: ${ECR_AUTH}
     repo: 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc
-#    dockerfile: ./Dockerfile
-#    context: .
-    commands:
-      - ls -la ~/
-      - echo $AWS_ACCESS_KEY_ID
-      - aws ecr get-login --region us-east-1 | sh
-      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
+    dockerfile: ./Dockerfile
+    context: .
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
