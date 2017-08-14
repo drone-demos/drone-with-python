@@ -20,6 +20,9 @@ pipeline:
     repo: 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc
     dockerfile: ./Dockerfile
     context: .
+    commands:
+      - aws ecr get-login --region us-east-1 | sh
+      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
