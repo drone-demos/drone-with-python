@@ -13,10 +13,10 @@ pipeline:
       - nosetests -v tests/
 
   auth:
-    image: drone-auth-ecr
+    image: scottlackey/drone-auth-ecr
     commands:
       - aws ecr get-login --region us-east-1 | bash
-      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc/my-image:latest
+      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
