@@ -1,30 +1,16 @@
-pipeline:
-#  build:
-#    image: ${IMAGE}
-#    commands:
-#      - pip install --upgrade pip setuptools wheel
-#      - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
-#      - pip wheel -r test-requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
-#      - pip install --use-wheel --no-index --find-links=wheeldir -r requirements.txt
-#      - pip install --use-wheel --no-index --find-links=wheeldir -r test-requirements.txt
-#      - python setup.py install
-#      - flake8 dronedemo
-#      - mkdir -p coverage
-#      - nosetests -v tests/
-
-  ecr:
-    image: plugins/ecr
-    secret_key: ${ECR_SECRET_KEY}
-    access_key: ${ECR_ACCESS_KEY}
-    auth: ${ECR_AUTH}
-    repo: 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc
-    dockerfile: ./Dockerfile
-    context: .
+ipeline:
+  build:
+    image: ${IMAGE}
     commands:
-      - aws ecr get-login --region us-east-1 | sh
-      - docker pull 995121555896.dkr.ecr.us-east-1.amazonaws.com/cloudlock/test-sit-ci-built-svc:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - pip install --upgrade pip setuptools wheel
+      - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
+      - pip wheel -r test-requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
+      - pip install --use-wheel --no-index --find-links=wheeldir -r requirements.txt
+      - pip install --use-wheel --no-index --find-links=wheeldir -r test-requirements.txt
+      - python setup.py install
+      - flake8 dronedemo
+      - mkdir -p coverage
+      - nosetests -v tests/
 
 matrix:
   IMAGE:
