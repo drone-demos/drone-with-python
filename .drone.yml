@@ -5,8 +5,8 @@ pipeline:
       - pip install --upgrade pip setuptools wheel
       - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
       - pip wheel -r test-requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
-      - pip install --use-wheel --no-index --find-links=wheeldir -r requirements.txt
-      - pip install --use-wheel --no-index --find-links=wheeldir -r test-requirements.txt
+      - pip install --no-index --find-links=wheeldir -r requirements.txt
+      - pip install --no-index --find-links=wheeldir -r test-requirements.txt
       - python setup.py install
       - flake8 dronedemo
       - mkdir -p coverage
