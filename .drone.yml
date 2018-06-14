@@ -1,26 +1,13 @@
-cache:
-  mount:
-    - wheeldir
-
-build:
-  image: python:3.5.1-alpine
-  commands:
-    - pip install --upgrade pip setuptools wheel
-    - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
-    - pip wheel -r test-requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
-    - pip install --use-wheel --no-index --find-links=wheeldir -r requirements.txt
-    - pip install --use-wheel --no-index --find-links=wheeldir -r test-requirements.txt
-    - python setup.py install
-    - flake8 dronedemo
-    - mkdir -p coverage
-    - nosetests -v tests/
-
-publish:
-  docker:
-    username: $$DOCKER_USERNAME
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: dronedemos/drone-with-python
-    tag: $$TAG
-    when:
-      event: tag
+pipeline:
+  build:
+    image: python:3.5.1-alpine
+    commands:
+      - pip install --upgrade pip setuptools wheel
+      - pip wheel -r requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
+      - pip wheel -r test-requirements.txt --wheel-dir=wheeldir --find-links=wheeldir
+      - pip install --use-wheel --no-index --find-links=wheeldir -r requirements.txt
+      - pip install --use-wheel --no-index --find-links=wheeldir -r test-requirements.txt
+      - python setup.py install
+      - flake8 dronedemo
+      - mkdir -p coverage
+      - nosetests -v tests/
